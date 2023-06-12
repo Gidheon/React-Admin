@@ -3,11 +3,15 @@ import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR, AUTH_CHECK } from 'react-admin';
 
 export const authProvider = (type, params) => {
   // when a user tries to log in
+
   if (type === AUTH_LOGIN) {
     const { username } = params;
-    localStorage.setItem('username', username);
-    return Promise.resolve();
+    if (username === 'a') {
+      localStorage.setItem('username', username);
+      return Promise.resolve();
+    }
   }
+
   // when a user tries to logout
   if (type === AUTH_LOGOUT) {
     localStorage.removeItem('username');
